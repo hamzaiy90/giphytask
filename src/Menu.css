@@ -1,0 +1,35 @@
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 5vh;
+  margin: 20px;
+}
+
+.btn1 {
+  background-color: rgb(241, 131, 2);
+  width: 50%;
+  border: none;
+}
+
+.menu-1, .menu-2 {
+  display: flex;
+  justify-content: center;
+  height: 100px;
+}
+
+.btn2 {
+  background-color: rgb(84, 204, 59);
+  width: 50%;
+  border: none;
+}
+
+.btn3 {
+  background-color: rgb(159, 92, 38);
+  width: 50%;
+  border: none;
+}
+
+input[type="text"] {
+  width: 70%;
+}
