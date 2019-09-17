@@ -3,8 +3,8 @@
 This is a small application which uses the giphy api. Whereby a user is able to insert a search term and receive giphies related to it. Click on the random button to retrieve random giphies or click on trending to display the most trending giphies.
 
 ### Basic features:
-- Use the search endpoint and connect it to a input (render the data through a component) &#9745;
-- Fetch more than 1 data from random endpoint using recursive function
+- Use the search endpoint and connect it to a input (render the data through a component): &#9745;
+- Fetch more than 1 data from random endpoint using recursive function and render the data: &#9745;
 - Onload fetch trending giphies and display them
 
 ### Extra features:
