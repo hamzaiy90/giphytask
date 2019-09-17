@@ -6,6 +6,13 @@
   margin: 20px;
 }
 
+.btn1, .btn2, .btn3 {
+  cursor: pointer;
+  border: none;
+  color: white;
+  font-weight: bold;
+}
+
 .btn1 {
   background-color: rgb(241, 131, 2);
   width: 50%;
