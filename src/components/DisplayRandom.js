@@ -10,7 +10,7 @@ class DisplayRandom extends React.Component {
 
   componentDidMount() {
     let that = this;
-    window.onscroll =  function(ev) {
+    window.onscroll =  function() {
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
             that.setState({
               bottom: true
@@ -26,13 +26,10 @@ class DisplayRandom extends React.Component {
   }
 
   render() {
-      if (!this.props.random) {
-        return <h3 style={{color: 'white'}}>Loading...</h3>
-      }
       if (this.props.random) {
-        // console.log('broooo', this.props.random);
-        console.log('Reached the bottom', this.state.bottom);
-
+        if (this.state.bottom) {
+          console.log('Reached the bottom', this.state.bottom);
+        }
         return (
                   <div className="main-content">
                     {this.props.children}

@@ -5,14 +5,16 @@ This is a small application which uses the giphy api. Whereby a user is able to 
 ### Basic features:
 - Use the search endpoint and connect it to a input (render the data through a component): &#9745;
 - Fetch more than 1 data from random endpoint using recursive function and render the data: &#9745;
-- Onload fetch trending giphies and display them
+- Onload fetch trending giphies and display them initially and on click show the latest trending: &#9745;
 
 ### Extra features:
 - For the random dataset use a infinite scroll component
 - Implement session storage within application
 - Component based testing
 
-
+## Problems faced:
+- I have used a class component for displaying random data so that on the component mounting I could listen to scroll event and use componentWillUnmount to remove the listener. It does register when the user reaches the bottom but have not managed to fire a fetch request and attach/concat the data to the page.
+- Similarly managed to add the data to the session and figured I could use setTimeout to clear the session storage after an hour. But did not manage to work around it.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
