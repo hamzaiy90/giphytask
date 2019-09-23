@@ -30,7 +30,7 @@ class App extends Component {
 
   componentDidMount() {
     this.fetchTrendingData()
-
+    this.check();
     /*
     fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&limit=30`)
             .then(res => res.json())
@@ -68,16 +68,35 @@ class App extends Component {
   // }
 
   fetchRandomData = () => {
-    if (counter < 30) {
-      fetch(`https://api.giphy.com/v1/gifs/random?api_key=${apiKey}`)
+  	if (counter < 10) {
+  		fetch(`https://api.giphy.com/v1/gifs/random?api_key=haCNw7hoMOlTH6jMatt4WMJvyFRmSuQ3`)
               .then(res => res.json())
-              .then(data => this.setState({random: this.state.random.concat(data)}))
+              .then(data => {
+                this.setState((prevState) => {
+                  return {
+                    random: prevState.random.concat(data)
+                  }
+                })
+              })
               .catch((err) => console.log('Error', err))
-      counter += 1;
-      this.fetchRandomData();
-    } else {
-      console.log('done');
-    }
+  		counter += 1;
+  		this.fetchRandomData()
+       }
+  }
+
+
+  check = () => {
+      let that = this;
+      window.onscroll = function() {
+        //window height without scrolling + the amount you have scrolled vertically is greater or equal to document body height
+        if ((window.innerHeight + window.pageYOffset) >= document.body.scrollHeight) {
+          if (that.state.show === 'random') {
+          console.log('reached bottom');
+          counter = 0;
+          that.fetchRandomData();
+          }
+        }
+      };
   }
 
   onRandom = () => {
@@ -97,11 +116,16 @@ class App extends Component {
       fetch(`https://api.giphy.com/v1/gifs/search?q=${this.state.searchInput}&api_key=${apiKey}&limit=30`)
         .then(res => res.json())
         .then(data => this.setState({
-          searchData: data
-        }));
+          searchData: data,
+      }));
+        document.querySelector('input[type="text"]').value = '';
     } else {
       alert('Invalid search')
     }
+    this.setState({
+      searchInput: '',
+      searchData: []
+    })
   }
 
   onInputChange = (e) => {
@@ -110,22 +134,11 @@ class App extends Component {
     })
   }
 
-  onRandom = () => {
-    this.setState((prevState) =>
-    {
-      return {
-      show: 'random',
-      random: []
-      }
-    })
-    counter = 0;
-    this.fetchRandomData()
-  }
-
   onTrending = () => {
     this.setState({
       show: 'trending'
     })
+    counter = 0;
     this.fetchTrendingData()
   }
 
@@ -141,7 +154,7 @@ class App extends Component {
       return (
           <div className="container">
             <Menu searchApi={this.searchApi} onRandom={this.onRandom} onTrending={this.onTrending} onInputChange={this.onInputChange}/>
-            <DisplayRandom random={this.state.random} fetchRandom={this.fetchRandomData}>
+            <div className="main-content">
             {
 
                     this.state.random.map((img, i) => {
@@ -149,7 +162,7 @@ class App extends Component {
                     })
 
             }
-            </DisplayRandom>
+            </div>
           </div>
       )
     } else if (this.state.show === 'trending') {
